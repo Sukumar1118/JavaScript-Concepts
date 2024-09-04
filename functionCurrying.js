@@ -8,16 +8,26 @@
             arguments in the chain, but it's like partial application rather than pure currying. 
     -> Curried functions take single argument at once.
 */
+//Example using closures.
 function curriedSum(a, b) {
   return function (b) {
     return a + b;
   };
 }
-
 console.log("curriedSum: ", curriedSum(2)(3));
+const sumWith10 = curriedSum(10);
+console.log(`sumWith10: ${sumWith10(1)}`);
 
+//Example using bind.
+function multiplyBy(x, y) {
+  console.log(`multiplyBy: ${x * y}`);
+  return x * y;
+}
+const multiplyBy2 = multiplyBy.bind(this, 2);
+console.log(`multiplyBy2: ${multiplyBy2(10)}`);
+
+//Example using arrow functions.
 const curriedArrowSum = (a) => (b, c) => a + b + c;
-
 console.log("curriedArrowSum: ", curriedArrowSum(2)(5, 5));
 
 /*
@@ -67,15 +77,15 @@ const composeromRight =
     functions.reduceRight((acc, fun) => fun(acc), input);
 
 const composeReduceRight = composeromRight(add, multiply, substract);
-console.log(`composeReduceRight: ${composeReduceRight(2)}`)
+console.log(`composeReduceRight: ${composeReduceRight(2)}`);
 
-const composeFromLeft = (...functions) => input =>
+const composeFromLeft =
+  (...functions) =>
+  (input) =>
     functions.reduce((acc, fun) => fun(acc), input);
 
 const composeReduceLeft = composeFromLeft(add, multiply, substract);
-console.log(`composeReduceLeft: ${composeReduceLeft(2)}`)
-
-
+console.log(`composeReduceLeft: ${composeReduceLeft(2)}`);
 
 //Example with named functions.
 function sum(x) {
