@@ -61,4 +61,25 @@ console.log(fullName('mumbai', 'India'));
 const fullName1 = user1.fullName.bind(user4, 'Mumbai');
 console.log(fullName1('India'));
 
+/* 
+    Polyfill for bind.
+*/
+let user5 = {
+    firstName: 'Narendra',
+    lastName: 'Modi',
+}
+
+let printName = function (city, country) {
+    return this.firstName + " " + this.lastName + " " + city + ", " + country;
+}
+
+Function.prototype.myBind = function (...args) {
+    let originalFunc = this;
+    let params = args.slice(1);
+    return function() {
+        return originalFunc.apply(args[0], [...params, ...arguments]);
+    }
+}
+const printDetails = printName.myBind(user5, "Gujarat");
+console.log(printDetails("India"));
 
