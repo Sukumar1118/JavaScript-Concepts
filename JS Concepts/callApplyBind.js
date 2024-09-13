@@ -10,20 +10,22 @@
 */
 
 const user1 = {
-    firstName: 'sukumar',
-    lastName: 'reddy',
-    fullName: function (city, country){
-        return this.firstName + " " + this.lastName + " from " + city + "," + country;
-    }
-}
-console.log(user1.fullName('Andhra', 'India'));
-console.log(user1.fullName.call(user1, 'bangalore', 'India'));
+  firstName: "sukumar",
+  lastName: "reddy",
+  fullName: function (city, country) {
+    return (
+      this.firstName + " " + this.lastName + " from " + city + "," + country
+    );
+  },
+};
+console.log(user1.fullName("Andhra", "India"));
+console.log(user1.fullName.call(user1, "bangalore", "India"));
 
 const user2 = {
-    firstName: 'sachin',
-    lastName: 'Tendulkar'
-}
-console.log(user1.fullName.call(user2, 'mumbai', 'India'));
+  firstName: "sachin",
+  lastName: "Tendulkar",
+};
+console.log(user1.fullName.call(user2, "mumbai", "India"));
 
 /*
     apply(): apply method is same like call method only, it's just that
@@ -33,10 +35,10 @@ console.log(user1.fullName.call(user2, 'mumbai', 'India'));
 */
 
 const user3 = {
-    firstName: 'MS',
-    lastName: 'DHONI',
-}
-console.log(user1.fullName.apply(user3, ['Jharkand', 'India']));
+  firstName: "MS",
+  lastName: "DHONI",
+};
+console.log(user1.fullName.apply(user3, ["Jharkand", "India"]));
 
 /*
     bind(): bind method returns a new function where the 'this' value is permanently set to the
@@ -51,35 +53,34 @@ console.log(user1.fullName.apply(user3, ['Jharkand', 'India']));
 */
 
 const user4 = {
-    firstName: 'Rohit',
-    lastName: 'Sharma',
-}
+  firstName: "Rohit",
+  lastName: "Sharma",
+};
 const fullName = user1.fullName.bind(user4);
-console.log(fullName('mumbai', 'India'));
+console.log(fullName("mumbai", "India"));
 
 // We can preset/fix some arguments in bind function.
-const fullName1 = user1.fullName.bind(user4, 'Mumbai');
-console.log(fullName1('India'));
+const fullName1 = user1.fullName.bind(user4, "Mumbai");
+console.log(fullName1("India"));
 
 /* 
     Polyfill for bind.
 */
 let user5 = {
-    firstName: 'Narendra',
-    lastName: 'Modi',
-}
+  firstName: "Narendra",
+  lastName: "Modi",
+};
 
 let printName = function (city, country) {
-    return this.firstName + " " + this.lastName + " " + city + ", " + country;
-}
+  return this.firstName + " " + this.lastName + " " + city + ", " + country;
+};
 
-Function.prototype.myBind = function (...args) {
-    let originalFunc = this;
-    let params = args.slice(1);
-    return function() {
-        return originalFunc.apply(args[0], [...params, ...arguments]);
-    }
-}
+Function.prototype.myBind = function (context, ...args) {
+  let originalFunc = this;
+  return function () {
+    return originalFunc.apply(context, [...args, ...arguments]);
+  };
+};
+
 const printDetails = printName.myBind(user5, "Gujarat");
 console.log(printDetails("India"));
-

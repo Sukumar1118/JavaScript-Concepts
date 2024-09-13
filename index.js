@@ -1,9 +1,8 @@
-
 function getName() {
   var x = 77;
-  getAddress()
+  getAddress();
   function getAddress() {
-    console.log(x)
+    console.log(x);
   }
 }
 
