@@ -21,3 +21,6 @@ Short Hands:
 5. DESTRUCTURING ASSIGNMENT
 
 */
+
+-> Aborting a fetch() Request, promise when cancelled by user or time out.
+-> About CORS in detail.
