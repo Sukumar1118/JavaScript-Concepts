@@ -2,7 +2,7 @@
     Promises: Promise is an object that represents eventual completion or failure
         of an asynchronous operation.
 
-    -> Promises help to avoid callback hell and inversion of comtrol.
+    -> Promises help to avoid callback hell and inversion of control.
 
     -> Promise is an object and it may be in one of any 3 - states.
 
@@ -10,7 +10,7 @@
 
         -> Fulfilled: In this state, operation completed successfully and promise has the result.
 
-        -> Rejected: In this state, operation has failed and promise has an error(or reason foran error).
+        -> Rejected: In this state, operation has failed and promise has an error(or reason for an error).
 
             Once a promise is fulfilled or rejected, it becomes "Settled" and it's state cannot change.
 
@@ -21,7 +21,7 @@
             -> .catch(): This method handles  promise rejection(failure).
 
             -> .finally(): This method executes after the promise is settled, 
-                irrespective od either promise is resolved or rejected.
+                irrespective of either promise is resolved or rejected.
 */
 
 const myPromise = new Promise((resolve, reject) => {
@@ -49,7 +49,7 @@ myPromise
         handle subsequent asynchronous operations in a cleaner way.
 
         -> If the promise is rejected, the control goes to nearest catch block directly
-            and doesn't execute subsequent .then() handlers.
+            and doesn't execute subsequent .then() handlers before catch().
 
         -> It resolves callback hell and inversion of control problems,
             -> JS makes sure that the promise is resolved only once either rejected or fulfilled.
@@ -58,9 +58,9 @@ myPromise
                 to execute subsequent async operations, since we define the flow of execution in
                 the code and not handed to the external or third-party functions.
 
-            -> With chaining, it makes the code clean, redable and esy to maintain.
+            -> With chaining, it makes the code clean, redable and easy to maintain.
 
-        -> Error handling will be easier. We can catch errors t any point of time in the chain.
+        -> Error handling will be easier. We can catch errors at any point of time in the chain.
 */
 
 //Ex-1:
@@ -98,11 +98,11 @@ createOrder(cart)
 /*
   Fetch(): fetch() is a promise based way to make network requests.
   
-  -> It returns a promise and doesn't reject on HTTP errors(like 404), 
-    only on network failures it rejects and we need to check and handle errors 
+  -> It returns a promise and doesn't reject on HTTP errors(like 404).
+    Only on network failures it rejects and we need to check and handle errors 
     with response.ok and response.status manually.
 
-  -> You can handle the response in various formata like JSON, text etc.
+  -> You can handle the response in various formats like JSON, text etc.
 
         -> respine.josn(): Converts response body in to Js object(Parse JSON).
 
