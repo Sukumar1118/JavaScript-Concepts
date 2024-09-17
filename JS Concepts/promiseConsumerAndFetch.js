@@ -23,7 +23,7 @@
             -> .finally(): This method executes after the promise is settled, 
                 irrespective od either promise is resolved or rejected.
 */
-/*
+
 const myPromise = new Promise((resolve, reject) => {
   let success = true;
   if (success) {
@@ -62,7 +62,7 @@ myPromise
 
         -> Error handling will be easier. We can catch errors t any point of time in the chain.
 */
-/*
+
 //Ex-1:
 myPromise
   .then((result) => {
@@ -112,7 +112,7 @@ createOrder(cart)
 
   -> fetch() works with async/await to write clean and readable asynchronous code.
 */
-/*
+
 //Ex-1:
 fetch("http://api.example.com/users")
   .then((response) => {
@@ -126,8 +126,6 @@ fetch("http://api.example.com/users")
   .catch((error) => {
     console.error(error);
   });
-
-*/
 
 //Ex-2:
 const users = fetch("https://api.github.com/users");

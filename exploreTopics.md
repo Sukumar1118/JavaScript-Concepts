@@ -24,3 +24,5 @@ Short Hands:
 
 -> Aborting a fetch() Request, promise when cancelled by user or time out.
 -> About CORS in detail.
+-> functions are first-class objects
+-> constructor functions, Dual Nature of Functions etc.

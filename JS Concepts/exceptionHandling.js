@@ -1,5 +1,3 @@
-// Explore: functions are first-class objects, constructor functions, Dual Nature of Functions etc.
-
 /* 
     Exception: Exception is an any abnormal situation or unexpected contion during the 
         execution of the program.
@@ -56,6 +54,8 @@ try {
                                -> ReferenceError: any non-existent variable is referred.
   
                                -> TypeError: any value is not of the expected type.
+                                  
+                                  etc...
   
       -> In JS "Error" is an object when instantiated and constructor function when invoked.
   */
