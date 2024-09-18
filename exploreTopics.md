@@ -26,3 +26,4 @@ Short Hands:
 -> About CORS in detail.
 -> functions are first-class objects
 -> constructor functions, Dual Nature of Functions etc.
+-> static functions or vars in constructor.
