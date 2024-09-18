@@ -111,6 +111,12 @@ createOrder(cart)
   -> With fetch(), we can send requests with GET, POST etc HTTP methods, but default is GET.
 
   -> fetch() works with async/await to write clean and readable asynchronous code.
+
+  -> fetch() returns a promise object and when resolved give response object.
+      The response object contains body which is readable stream object.
+      we can get the result data with response.josn() which is again a promise, 
+      when resolved gives the result.
+
 */
 
 //Ex-1:
