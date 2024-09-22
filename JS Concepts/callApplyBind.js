@@ -48,6 +48,8 @@ console.log(user1.fullName.apply(user3, ["Jharkand", "India"]));
             while invoking the function later.
         -> bind dosen't invoke immediately like call and apply.
         -> It creates a new function with the provided context.
+        -> bind only works once, if we bind function multiple times, 
+            it take the fist bind 'this' value.
 
     Use Case: It is used, when you want to create a function with fixed this context.
 */
