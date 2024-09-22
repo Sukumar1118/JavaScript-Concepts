@@ -27,3 +27,6 @@ Short Hands:
 -> functions are first-class objects
 -> constructor functions, Dual Nature of Functions etc.
 -> static functions or vars in constructor.
+-> setTimeout params explore
+-> Little about 'use strict'
+-> this inside class and constructor functions
