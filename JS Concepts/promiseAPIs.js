@@ -140,3 +140,49 @@ anyPromises
     console.log(err);
     console.log(err.errors);
   });
+
+/*
+    -> What if I have 3-promises and I want result of each promise immediately one by one 
+      when it settled instead of waiting for all the promises to finish?
+*/
+const promises = [
+  new Promise((resolve) => setTimeout(resolve, 2000, "First Promise")),
+  new Promise((resolve) => setTimeout(resolve, 5000, "Second Promise")),
+  new Promise((resolve, reject) =>
+    setTimeout(reject, 10000, "Third Promise Failed")
+  ),
+];
+
+async function processImmediately(promises) {
+  const results = [];
+
+  while (promises.length > 0) {
+    const settledPromise = await Promise.race(
+      promises.map((p, index) =>
+        p
+          .then((result) => ({ status: "fulfilled", result, index }))
+          .catch((error) => ({ status: "rejected", error, index }))
+      )
+    );
+
+    // Handle the result of the first settled promise
+    if (settledPromise.status === "fulfilled") {
+      console.log(
+        `Promise ${settledPromise.index + 1} resolved with: ${
+          settledPromise.result
+        }`
+      );
+    } else {
+      console.log(
+        `Promise ${settledPromise.index + 1} rejected with: ${
+          settledPromise.error
+        }`
+      );
+    }
+
+    // Remove the settled promise from the array
+    promises.splice(settledPromise.index, 1);
+  }
+}
+
+processImmediately(promises);
