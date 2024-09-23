@@ -46,9 +46,10 @@
 
 */
 
-//Ex: To show every function has its own execution context.
-// Refer Image: JS Concepts\assets\images\executionContext_3.PNG
-
+/*
+    Ex: To show every function has its own execution context.
+    Refer Image: JS Concepts\assets\images\executionContext_3.PNG
+*/
 var x = 10;
 
 aFunc(); //20
@@ -64,3 +65,43 @@ function bFunc() {
   var x = 30;
   console.log(x);
 }
+
+/*
+    -> Shortest program in JS is empty file.
+    -> When we run any empty JS file:
+        -> It creates GEC or global space.
+        -> It has window object and JS engine provides this window object.
+        -> It alos give "this" - which is window object in GEC.
+        -> this === window (true) in GEC.
+        -> Any variable or function, written outside the function will be available
+            as part of GEC.
+        -> Anything written inside the function is available as part of that function
+            execution context(Local).
+*/
+
+var xyz = 10;
+console.log("xyz: ", xyz); //10
+console.log(window.xyz); //10
+
+/*
+    "undefined" Vs "not defined":
+        -> In JS, during memory allocation phase all variables are given a 
+            default placeholder or value as"undefined"
+        -> If some variable is not present in the program or memory of the EC,
+            then it is thrown error as "variable is not defined".
+*/
+var a;
+console.log(a); //undefined
+console.log(aXYZ); //ReferenceError: aXYZ is not defined
+console.log(a === undefined); //true
+
+/*
+    Loosely/weakly typed: In Js, we can assign any type of value to a variable.
+        -> We can assign number, then we can assign string etc.
+        -> It's flexible to add any type of values to a variable.
+*/
+
+var a = 10;
+console.log(a); //10
+a = "Sukumar";
+console.log(a); //Sukumar
