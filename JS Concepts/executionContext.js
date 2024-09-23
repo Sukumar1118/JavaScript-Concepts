@@ -46,6 +46,21 @@
 
 */
 
+//Ex: To show every function has its own execution context.
+// Refer Image: JS Concepts\assets\images\executionContext_3.PNG
 
+var x = 10;
 
+aFunc(); //20
+bFunc(); //30
+console.log(x); //10
 
+function aFunc() {
+  var x = 20;
+  console.log(x);
+}
+
+function bFunc() {
+  var x = 30;
+  console.log(x);
+}
