@@ -72,6 +72,9 @@ const bConst = 30;
             declared inside block, they are stored in separate memory called "Block".
             And they cannot be accessed outside these block. So, they are called "block scoped".
 
+        -> If multiple blocks(nested blocks) are created, seperate memory blocks are createf for 
+            each one whcih can be observed in dev tools.
+
     Shadowing: Shadowing is like when a variable in the inner scope has the same name as outer
             scope variable, the inner scope variable shadows outer one.
 
