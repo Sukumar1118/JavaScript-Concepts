@@ -30,3 +30,6 @@ Short Hands:
 -> setTimeout params explore
 -> Little about 'use strict'
 -> this inside class and constructor functions
+-> short cuts in VS code
+-> Abou git commands
+-> About debugger tools in depth
