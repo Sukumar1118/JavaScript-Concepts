@@ -2,10 +2,13 @@
     Refer Images: JS Concepts\assets\images\scopeChain.PNG,
                   JS Concepts\assets\images\scopeChain_2.PNG
 
-    Scope: scope is like where and all the variable has access.
+    Scope: "Scope" is like accessibility of variables, functions etc. at different parts of the code.
         -> If we take any variable, it has access to it's function lexical scope
-            and it's parent's lexical scope.
-        -> This chaining of lexical environments/scopes is called "scope chain".
+            and it's parent's lexical scope and so on until gobal scope.
+        -> Lexical environment is a structure that holds all variable names, constants and
+            function refrences and reference to the outer lexical environment
+        -> Looking up in this chain of lexical environments/scopes for variable resolution,
+            from local to global scope is called "Scope chain".
 */
 
 var z = 40;
