@@ -41,6 +41,12 @@
 
     Starvation: If Microtask queue has many number of tasks and callback queue is waiting for long time
             to get chance for execution, then it is called starvation.
+
+    Mutation Observers: Mutation observer is an API used for monitoring the changes in the DOM 
+            (Document Object Model) and respond with callback function when certain types of modifications 
+            occur like adding or removing nodes, changing attributes, or modifying text content etc.
+
+            -> It is an async operation and should be handled by developer manually.
         
 */
 
