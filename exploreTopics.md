@@ -27,9 +27,11 @@ Short Hands:
 -> functions are first-class objects
 -> constructor functions, Dual Nature of Functions etc.
 -> static functions or vars in constructor.
--> setTimeout params explore
+-> setTimeout, how to pass params to setTimeout
 -> Little about 'use strict'
 -> this inside class and constructor functions
 -> short cuts in VS code
--> Abou git commands
+-> About git commands
 -> About debugger tools in depth
+-> closures with increment and decrement counters using constructor functions.
+-> More on closure uses
