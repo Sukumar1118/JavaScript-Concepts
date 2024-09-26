@@ -37,3 +37,6 @@ Short Hands:
 -> More on closure uses
 -> Basic math problems and basic math details with example programs etc.
 -> More on eventlisteners, remove even listeners, closures and garbage collector topics.
+-> Storages in detail and differences.
+-> What is a Web Worker?
+-> ES6 features list and latest ECMA versions.
