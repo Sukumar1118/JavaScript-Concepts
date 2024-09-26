@@ -35,3 +35,5 @@ Short Hands:
 -> About debugger tools in depth
 -> closures with increment and decrement counters using constructor functions.
 -> More on closure uses
+-> Basic math problems and basic math details with example programs etc.
+-> More on eventlisteners, remove even listeners, closures and garbage collector topics.
