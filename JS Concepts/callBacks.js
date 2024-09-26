@@ -1,7 +1,6 @@
 /*
-    callback: callback is a JavaScript function which is passed as an 
-        argument to another function.
-    -> And, it is executed after some operation or an event has occurred.
+    callback: callback is a function which is passed as an argument to another function 
+              and it is executed after some operation or an event has occurred.
     -> Callbacks allows you to specify what should happen after a task 
         is completed and making the code flexible and asynchronous.
 */
@@ -26,7 +25,7 @@ console.log("End");
         it executes only one task at a time.
     -> Callbacks are essential for handling tasks like fetching data from server,
         timers etc. without blocking the execution of other code.
-    -> Without callbacks, JS waits for long-rinning tasks and blocks the UI 
+    -> Without callbacks, JS waits for long-running tasks and blocks the UI 
         to move to another task.
     -> Callbacks are heavily used to handle events.
         For Ex: When you clcik a button, you define a calback function to handle 
@@ -98,7 +97,6 @@ createOrder()
   .catch((error) => comsole.log(error));
 
 // Using async/await
-
 async function runTasks() {
   try {
     const res1 = await createOrder(cart);
