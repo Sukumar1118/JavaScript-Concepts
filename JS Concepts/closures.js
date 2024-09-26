@@ -141,3 +141,14 @@ Memory leaks:
             -> Event listeners are not properly removed and those references can cause memory leaks.
             etc..
 */
+
+/*
+    Closures with eventListeners
+*/
+function buttonCount() {
+  let count = 0;
+  document.getElementById("myButton").addEventListener("click", function () {
+    console.log("Button clicked!: ", count++);
+  });
+}
+buttonCount();
