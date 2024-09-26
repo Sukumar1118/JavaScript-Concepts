@@ -79,6 +79,9 @@ const bConst = 30;
             scope variable, the inner scope variable shadows outer one.
 
             -> Shadowing happens at different levels like: global, function or block scope.
+
+            -> Try to avoid shadowing to clear confusion by creating proper descriptive 
+                variable names and using different names inside and outside blocks etc.
 */
 
 //Global vs Local (Function) Scope Shadowing
