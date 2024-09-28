@@ -5,6 +5,7 @@
         -> Anonymous function
         -> Named function expression
         -> First-class functions(First-class citizens)
+        -> Higher-order function
         -> callback functions
 
 
@@ -36,10 +37,14 @@
         -> It is used for better debugging, since named functions gives more meaningful information
             than anonymous functions in debugging tools or stack traces.
 
-    First-class functions: 
+    First-class functions: (First-class citizens)
         -> Functions are treated like any other values or objects in JS, that means functions can be 
             assigned to variables, passed as arguments to another functions, can be returned from functions,
             can be stores in data structures like arrays, objects etc.
+
+    Higher-order function:
+        -> If a function takes one or more another functions as arguments or 
+            returns a function as result, then it is called Higher-order function.
 
     callback functions:
         -> Callback is a function which is passed as an argument to another function 
@@ -51,8 +56,6 @@
         For Ex: When you clcik a button, you define a calback function to handle 
         that event.
 
-    
-        
 */
 
 // Function statement aka Function declaration
@@ -89,3 +92,23 @@ document.getElementById("myButton").addEventListener("click", function () {
   console.log("Button clicked!");
 });
 
+//Higher-order function(Calculate function takes another function as argument)
+const radius = [2, 7, 10, 15];
+
+const area = function (radius) {
+  return Math.PI * radius * radius;
+};
+const diameter = function (radius) {
+  return 2 * radius;
+};
+
+const calculate = function (radius, logic) {
+  let output = [];
+  for (let i = 0; i < radius.length; i++) {
+    output.push(logic(radius[i]));
+  }
+  return output;
+};
+
+console.log(calculate(radius, area));
+console.log(calculate(radius, diameter));
