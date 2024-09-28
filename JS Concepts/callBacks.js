@@ -49,11 +49,11 @@ document.getElementById("myButton").addEventListener("click", function () {
 
 /*
     Trust issues with setTimeout():
-      -> In any JS program, For ex: If you use setTimeout() of timer 5-seconds, there is no guarentee
-          that callback function inside setTimeout will be executed exactly after 5-seconds.
-      -> Because, if the lines code after setTimeout() take more tham 5-seconds(say 10-seconds),
+      -> In any JS program, For ex: If you use setTimeout() of timer 5-seconds, there is no guarantee
+          that callback function of setTimeout will be executed exactly after 5-seconds.
+      -> Because, if the lines code after setTimeout() take more than 5-seconds(say 10-seconds),
           then the callstack will be empty after 10-seconds only. So, once the callstack is empty
-          then only setTimeout CB exeutes. Because, eventloop places the CB in to callstack only
+          then only setTimeout() CB function exeutes. Because, eventloop places the CB in to callstack only
           when it is empty. This is due to concurrency model or synchronous single threaded execution
           of JS.
 
