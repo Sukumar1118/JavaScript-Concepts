@@ -6,6 +6,7 @@ Different types of prgramming languages:
 2. Object oriented
 3. Functional
 4. Imperative
+5. High-level languages and low-level languages and more
 
 /*
 Short Hands:
@@ -40,3 +41,4 @@ Short Hands:
 -> Storages in detail and differences.
 -> What is a Web Worker?
 -> ES6 features list and latest ECMA versions.
+-> More About parser, Babel etc.
