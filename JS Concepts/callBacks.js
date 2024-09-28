@@ -48,6 +48,36 @@ document.getElementById("myButton").addEventListener("click", function () {
 });
 
 /*
+    Trust issues with setTimeout():
+      -> In any JS program, For ex: If you use setTimeout() of timer 5-seconds, there is no guarentee
+          that callback function inside setTimeout will be executed exactly after 5-seconds.
+      -> Because, if the lines code after setTimeout() take more tham 5-seconds(say 10-seconds),
+          then the callstack will be empty after 10-seconds only. So, once the callstack is empty
+          then only setTimeout CB exeutes. Because, eventloop places the CB in to callstack only
+          when it is empty. This is due to concurrency model or synchronous single threaded execution
+          of JS.
+
+        -> For setTimeout() of timer 0-seconds also, the process is same it waits for all the code 
+          to execute and when the callstack is empty, then only CB of timer is executed.
+
+        -> We can use setTimeout() of timer 0-seconds in the code when any function we wnat to 
+            execute later after all the code executes.
+*/
+console.log("Start");
+
+setTimeout(function () {
+  console.log("callback called");
+}, 5000);
+
+const start = new Date().getTime();
+let end = start;
+while (end < start + 10000) {
+  end = new Date().getTime();
+}
+
+console.log("End")
+
+/*
     Callback problems:
     -----------------
     Callback Hell: callback hell is like where multiple nested callbacks are used,
