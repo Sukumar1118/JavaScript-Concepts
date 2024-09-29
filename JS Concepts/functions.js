@@ -7,9 +7,10 @@
         -> First-class functions(First-class citizens)
         -> Higher-order function
         -> callback functions
-
-
+        -> Arrow function
         -> Immediately Invoked Function Expression (IIFE)
+        -> Pure and Impure functions
+        -> Constructor function
 
     Parameters and Arguments: 
         -> Parameters are variables that are listed as part of the funciton definition. They are
@@ -56,6 +57,34 @@
         For Ex: When you clcik a button, you define a calback function to handle 
         that event.
 
+    Arrow function:
+        -> Arrow functions are more concise way to write functions in JavaScript. 
+            They provide shorter syntax and they are introduced in ES6.
+        -> Arrow functions doesn't have their own "this" binding, they inherit "this"
+            from the surrounding scope  where the function is defined.
+        -> They don't have a name, but when assigned to a variable or an object property
+            they inherit a name based on the variable or property name.
+
+    Immediately Invoked Function Expression (IIFE):
+        -> An IIFE is a function expression that gets executed immediately after created
+            without calling it explicitly.
+        -> The paranthesis around it makes it an expression not a declaration.
+
+    Pure and Impure functions:
+        -> Pure function is that, if given the same inputs, will always return the same output
+            with causing any side affects(doesn't alter any external state or data).
+        -> Impure function is that which produces different output even with same inputs or
+            may cause side effects by modifying external state or data.
+
+        -> It's better to write pure functions most of the times becaise they are more predictable,
+            testable and maintainable.
+
+    Constructor function:
+        -> Constructor function is a special type of function used to create and initialize objects.
+        -> When called with "new" keyword, it creates instance of an object with properties and 
+            methods defined inside the function.
+        -> It is conventionally written in a capitalized name to distinguish it from regular functions.
+
 */
 
 // Function statement aka Function declaration
@@ -92,6 +121,20 @@ document.getElementById("myButton").addEventListener("click", function () {
   console.log("Button clicked!");
 });
 
+//Arrow function
+const funcName = (param1, param2) => {
+  return param1 + param2;
+};
+console.log(funcName.name);
+
+const personDetails = {
+  firstName: "Sukumar",
+  greet: () => {
+    console.log(`Name: ${this.firstName}`);
+  },
+};
+console.log(personDetails.greet());// Name: undefined (here it inherits global scope)
+
 //Higher-order function(Calculate function takes another function as argument)
 const radius = [2, 7, 10, 15];
 
@@ -112,3 +155,48 @@ const calculate = function (radius, logic) {
 
 console.log(calculate(radius, area));
 console.log(calculate(radius, diameter));
+
+//Immediately Invoked Function Expression (IIFE)
+(function () {
+  console.log("IIFE executed");
+})();
+
+for (var i = 1; i <= 5; i++) {
+  (function (i) {
+    setTimeout(() => {
+      console.log(i); // 1, 2, 3, 4, 5
+    }, i * 1000);
+  })(i);
+}
+
+//Pure function
+function sum(a, b) {
+  return a + b;
+}
+
+//Impure functions
+let empName = "sukumar";
+function changeName() {
+  empName = "Sachin"; // alters external data
+}
+
+function randomNum() {
+  return Math.random(); // gives different output each time
+}
+
+function logError(errorMessage) {
+  console.error(errorMessage); // affects the external environment
+}
+
+//Constructor function
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+
+  this.sayHello = function () {
+    console.log(`Name: ${name}, Age: ${age}`);
+  };
+}
+
+let person1 = new Person("Sukumar", 34);
+person1.sayHello(); //Output: Name: Sukumar, Age: 34
