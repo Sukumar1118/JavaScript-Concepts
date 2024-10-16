@@ -3,9 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <title>title</title>
+    <style>
+      .div-space {
+        border: 1px solid green;
+        margin: 30px;
+      }
+    </style>
   </head>
   <body>
-    <button id="myButton">Click me!</button>
+    <!-- event bubbling & capturing -->
+    <!-- <div id="grandParent" class="div-space">
+      <div id="parent" class="div-space">
+        <div id="child" class="div-space">
+          <button id="myButton" class="div-space">Click me!</button>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <button id="myButton">Click me!</button> -->
+
+    <!-- event delegation -->
+    <!-- <div id="parentList">
+      <li id="books">Books</li>
+      <li id="shoes">Shoes</li>
+      <li id="clothes">Clothes</li>
+      <li id="toys">Toys</li>
+    </div> -->
+
     <script src="index.js"></script>
+    <input onkeyup="debounce(event)" />
   </body>
 </html>

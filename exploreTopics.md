@@ -42,3 +42,5 @@ Short Hands:
 -> What is a Web Worker?
 -> ES6 features list and latest ECMA versions.
 -> More About parser, Babel etc.
+
+IMP: Promise, map, filter, reduce, bind etc.. ployfills
