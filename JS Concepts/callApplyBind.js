@@ -67,6 +67,7 @@ console.log(fullName1("India")); //Rohit Sharma from mumbai,India
 
 /* 
     Polyfill for bind.
+    SRC: https://www.javascripttutorial.net/javascript-bind/
 */
 let user5 = {
   firstName: "Narendra",

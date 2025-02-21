@@ -1,7 +1,7 @@
 /*
     Closures: A closure is a combination of function and it's lexical environment(surrounding state).
         -> In other works, the closure gives access to it's outer function scope.
-        -> Closure has access to it's variable references not i's values.
+        -> Closure has access to it's variable references not it's values.
 */
 
 function a() {
@@ -74,24 +74,24 @@ console.log("triple:", triple(5)); // 15
 function func2() {
   var x = 10;
   setTimeout(function () {
-    console.log(x);
+    console.log("func2: " + x);
   }, 3000);
-  console.log("Hello JS!");
+  console.log("func2 Hello JS!");
 }
-//func2();
-// Hello JS!
-// 10 (after 3 - secs)
+func2();
+// func2 Hello JS!
+// func2: 10 (after 3 - secs)
 
 //Ex: Print 1,2,3.. for each second.
 function func3() {
-  for (var i = 0; i < 4; i++) {
+  for (var i = 1; i < 4; i++) {
     setTimeout(function () {
-      console.log(i);
+      console.log("func3: " + i);
     }, i * 1000);
   }
 }
 //func3();
-// 4 4 4 4 - because function closure holds reference to its lexical environment and not value
+// 4 4 4 - because function closure holds reference to its lexical environment and not value
 // and so when the function executes after timer, it's value is 4 and so prints 4 every time.
 
 //Ex: Print 1,2,3.. for each second.
@@ -106,7 +106,7 @@ function func4() {
 
 //Ex: Print 1,2,3.. for each second.
 function func5() {
-  for (var i = 0; i < 4; i++) {
+  for (var i = 1; i < 4; i++) {
     function close(x) {
       setTimeout(function () {
         console.log("func5: ", x);
@@ -125,6 +125,16 @@ function func6() {
 }
 func6();
 
+//Ex: Print 1,2,3.. for each second.
+function func7() {
+  for (var i = 0; i < 4; i++) {
+    setTimeout(function (i) {
+      console.log("func3: " + i);
+    }, i * 1000,i);
+  }
+}
+func7()
+
 /*
 Garbage Collector: It's a process reponsible for freeing up the memory that is 
                    no longer needed for the application.
@@ -139,7 +149,7 @@ Memory leaks:
             -> Unncesaary global variables are created and not cleaned up.
             -> Creating a lot of closures which hold the memory can cause memory leaks.
             -> Event listeners are not properly removed and those references can cause memory leaks.
-            etc..
+               etc..
 */
 
 /*
