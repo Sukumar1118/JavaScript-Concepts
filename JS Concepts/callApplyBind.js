@@ -1,6 +1,6 @@
 /* 
-    call(): call method call the function with a given 'this' value. 
-        And arguments are provided individually.
+    call(): call method calls the function with a given 'this' context/value and arguments are 
+            provided individually.
 
     Use case: call method is used to invoke a function when you want to 
             specify the 'this' value explicitly. 
@@ -18,18 +18,18 @@ const user1 = {
     );
   },
 };
-console.log(user1.fullName("Andhra", "India"));
-console.log(user1.fullName.call(user1, "bangalore", "India"));
+console.log(user1.fullName("Andhra", "India")); //sukumar reddy from Andhra,India
+console.log(user1.fullName.call(user1, "bangalore", "India")); //sukumar reddy from bangalore,India
 
 const user2 = {
   firstName: "sachin",
   lastName: "Tendulkar",
 };
-console.log(user1.fullName.call(user2, "mumbai", "India"));
+console.log(user1.fullName.call(user2, "mumbai", "India")); //sachin Tendulkar from mumbai,India
 
 /*
     apply(): apply method is same like call method only, it's just that
-    the arguments are passed in array.
+             the arguments are passed in array.
 
     Use Case: It is used to invoke funcions when you want to pass arguments as an array.
 */
@@ -38,7 +38,7 @@ const user3 = {
   firstName: "MS",
   lastName: "DHONI",
 };
-console.log(user1.fullName.apply(user3, ["Jharkand", "India"]));
+console.log(user1.fullName.apply(user3, ["Jharkand", "India"])); //MS DHONI from Jharkand,India
 
 /*
     bind(): bind method returns a new function where the 'this' value is permanently set to the
@@ -49,7 +49,7 @@ console.log(user1.fullName.apply(user3, ["Jharkand", "India"]));
         -> bind dosen't invoke immediately like call and apply.
         -> It creates a new function with the provided context.
         -> bind only works once, if we bind function multiple times, 
-            it take the fist bind 'this' value.
+           it take the first bind 'this' value.
 
     Use Case: It is used, when you want to create a function with fixed this context.
 */
@@ -59,11 +59,11 @@ const user4 = {
   lastName: "Sharma",
 };
 const fullName = user1.fullName.bind(user4);
-console.log(fullName("mumbai", "India"));
+console.log(fullName("mumbai", "India")); //Rohit Sharma from mumbai,India
 
 // We can preset/fix some arguments in bind function.
 const fullName1 = user1.fullName.bind(user4, "Mumbai");
-console.log(fullName1("India"));
+console.log(fullName1("India")); //Rohit Sharma from mumbai,India
 
 /* 
     Polyfill for bind.
@@ -85,4 +85,4 @@ Function.prototype.myBind = function (context, ...args) {
 };
 
 const printDetails = printName.myBind(user5, "Gujarat");
-console.log(printDetails("India"));
+console.log(printDetails("India")); //Narendra Modi Gujarat, India
