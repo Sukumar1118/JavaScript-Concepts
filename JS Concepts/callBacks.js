@@ -34,7 +34,8 @@ console.log("End");
 
 console.log("Start 1");
 
-/* SetTimeout delays the execution of callback function without blocking the 
+/* 
+  SetTimeout delays the execution of callback function without blocking the 
     execition of remaining code.
 */
 setTimeout(function () {
@@ -43,9 +44,9 @@ setTimeout(function () {
 
 console.log("End 1");
 
-document.getElementById("myButton").addEventListener("click", function () {
-  console.log("Button clicked!");
-});
+// document.getElementById("myButton").addEventListener("click", function () {
+//   console.log("Button clicked!");
+// });
 
 /*
     Trust issues with setTimeout():
@@ -78,13 +79,13 @@ while (end < start + 10000) {
 console.log("End")
 
 /*
-    Callback problems:
+    Callback problems: (also known as "Pyramid of Doom")
     -----------------
     Callback Hell: callback hell is like where multiple nested callbacks are used,
         usually in asynchronous operations, where code becomes difficult to read, 
         maintain and debug.
 
-    Inversion of control: Ioc is like delegating the control of exection flow to the 
+    Inversion Of Control: IOC is like delegating the control of exection flow to the 
         callbcak functions, instead of managing by yourself.
         -> You provide the code, but something else decides when to execute it.
         -> Functions might be written by different people and we can't rely on them.

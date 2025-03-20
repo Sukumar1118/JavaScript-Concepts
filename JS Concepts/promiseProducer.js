@@ -6,7 +6,7 @@
 
         -> You can Resolve or Reject the promise as per your choice based on the result.
 
-        -> After catch(), remain .then() functions will execute and chain will not break.
+        -> After catch(), remaining .then() functions will execute and chain will not break.
 
         -> .then() fucntions after the error(or rejection) and before catch will not 
             be executed and skipped.

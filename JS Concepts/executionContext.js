@@ -28,11 +28,11 @@
     -> Second phase is "Code execution" phase:
         -> In this phase, on execution of the code values for variables are assigned as applicable.
 
-    -> When a function is invoked, local execution context is created.
-        -> Again, it has two sections like GEC and everything like memory allocation,
-            code exceution is same.
-        -> In this params also will be considered as variables and so on.
-        -> Like wise if any other function is invoked, another EC is created and so on.
+        -> When a function is invoked, local execution context is created.
+            -> Again, it has two sections like GEC and everything like memory allocation,
+                code exceution is same.
+            -> In this params also will be considered as variables and so on.
+            -> Like wise if any other function is invoked, another EC is created and so on.
 
     -> Call stack:
         -> All the ECs are maintained in call stack.

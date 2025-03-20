@@ -20,8 +20,8 @@
 
             -> .catch(): This method handles  promise rejection(failure).
 
-            -> .finally(): This method executes after the promise is settled, 
-                irrespective of either promise is resolved or rejected.
+            -> .finally(): This method executes after the promise is settled, irrespective of 
+                           either promise is resolved or rejected.
 */
 
 const myPromise = new Promise((resolve, reject) => {
@@ -104,7 +104,7 @@ createOrder(cart)
 
   -> You can handle the response in various formats like JSON, text etc.
 
-        -> respine.josn(): Converts response body in to Js object(Parse JSON).
+        -> response.josn(): Converts response body in to Js object(Parse JSON).
 
         -> response.text(): Returns the reponse body as plain text.
 

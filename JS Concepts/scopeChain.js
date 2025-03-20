@@ -1,10 +1,17 @@
 /*
+    Term	    |   Meaning
+    ----            -------
+    Declared	|   The variable or function exists but has no value assigned yet.
+    Initialized	|   A declared variable is assigned an initial value.
+    Defined	    |   A variable is both declared and assigned a value, or a function has a body with code.
+
+
     Refer Images: JS Concepts\assets\images\scopeChain.PNG,
                   JS Concepts\assets\images\scopeChain_2.PNG
 
     Scope: "Scope" is like accessibility of variables, functions etc. at different parts of the code.
-        -> If we take any variable, it has access to it's function lexical scope
-            and it's parent's lexical scope and so on until gobal scope.
+        -> If we take any variable, it has access to it function's lexical scope
+            and it parent's lexical scope and so on until gobal scope.
         -> Lexical environment is a structure that holds all variable names, constants and
             function refrences and reference to the outer lexical environment
         -> Looking up in this chain of lexical environments/scopes for variable resolution,
@@ -34,7 +41,7 @@ a();
         -> The zone/area where until let and const are hoisted but not declaraed in the code,
             there they can't be accessed. It is called TDZ(Temporal Dead Zone).
 
-        -> They ar also allocated memory before execution, but they are not placed 
+        -> They are also allocated memory before execution, but they are not placed 
             in global space. They are placed in separate memory location.
             So, they are not accessible until declaration in the code.
 
@@ -72,11 +79,11 @@ const bConst = 30;
             declared inside block, they are stored in separate memory called "Block".
             And they cannot be accessed outside these block. So, they are called "block scoped".
 
-        -> If multiple blocks(nested blocks) are created, seperate memory blocks are createf for 
+        -> If multiple blocks(nested blocks) are created, seperate memory blocks are created for 
             each one whcih can be observed in dev tools.
 
-    Shadowing: Shadowing is like when a variable in the inner scope has the same name as outer
-            scope variable, the inner scope variable shadows outer one.
+    Shadowing: Shadowing is like when a variable in the inner scope has the same name as variable
+            in the outer scope, then inner scope variable shadows outer one.
 
             -> Shadowing happens at different levels like: global, function or block scope.
 

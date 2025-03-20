@@ -1,5 +1,5 @@
 /*
-    Async: async is a keyword used before a function to ctare async function.
+    Async: async is a keyword used before a function to create async function.
         -> async function always returns a promise. 
         -> You can return a promise in async function and it will return that promise as it is.
         -> If don't return any promise and return any value, it will wrap the value inside promise

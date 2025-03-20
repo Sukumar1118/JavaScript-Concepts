@@ -15,19 +15,19 @@ const userObj = users.map((user) => {
   return { userName: user };
 });
 
-//Ex: using index
+//Ex: Using index
 const numbers = [10, 20, 30];
-const result1 = numbers.map((num, index, arr) => num * index, thisArg);
+const result1 = numbers.map((num, index, arr) => num * index);
 console.log("Result with Index: ", result1);
 
 /*
-    Array.prototype.filter(): Array filter method is used to create anew array containing only
-            elements of an originalarray that satisfies a condition.
+    Array.prototype.filter(): Array filter method is used to create a new array containing only
+            elements of an original array that satisfies a condition.
         -> It is used to filter unwanted elements.
         -> Used to search specific elements based on some condition.    
 */
 //Syntax:
-const newArr = array.filetr(callback(ele, index, arr), thisArg);
+// const newArr = array.filetr(callback(ele, index, arr));
 
 //EX
 const numbers1 = [10, 20, 33];
@@ -50,11 +50,13 @@ console.log("Admins: ", result2);
             element of an array and gives single output value.
         -> It is used to accumulate or transform data.
 */
-//Syntax:
-let result = array.reduce(
-  callback(accumulator, currentValue, index, array),
-  initialValue
-);
+/* Syntax:
+   -------
+    let result = array.reduce(
+      callback(accumulator, currentValue, index, array),
+      initialValue
+    );
+*/
 
 //Ex: Sum of numbers
 const numbers2 = [10, 20, 33];

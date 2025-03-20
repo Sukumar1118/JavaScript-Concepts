@@ -4,21 +4,22 @@
                   JS Concepts\assets\images\eventLoopsDesign.PNG
 
     JS Runtime Environment: The environment which provides all the necessary components to run the
-                Javascript code.
-        Components includes:
-        -> JS Engine
-        -> Call Stack & Menory Heap(Part of JS Engine)
-        -> Web APIs
-        -> Callback Queue
-        -> Microtask Queue
-        -> Event Loop
+                            javascript code.
+
+    Components includes:
+                    -> JS Engine
+                    -> Call Stack & Memory Heap(Part of JS Engine)
+                    -> Web APIs
+                    -> Callback Queue
+                    -> Microtask Queue
+                    -> Event Loop
     
     Ex: Browser runtime, Node.js(server-side) runtime etc.
 
-    JS Engine: JS Engine is a program and the core component of JS runtime environment which executes
-            javascript code and converts into machine code.
-            -> JS Engine is piece of code(like any other software).
-                It's not an hardware machine(something else like that).
+    JS Engine: -> JS Engine is a program and the core component of JS runtime environment which executes
+                  javascript code and converts it into machine code.
+               -> JS Engine is piece of code(like any other software).
+                  It's not an hardware machine(something else like that).
     
     Ex: V8 engine             - developed by Google    - used in Google chrome, Node.js etc.
         SpiderMonkey          - developed by Mozilla   - used in Firefox browser.
@@ -26,7 +27,7 @@
         Chakra(Now V8 engine) - developed by Microsoft - used in Microsoft Edge browser.
      
     -> First JS Engine - SpiderMonkey - developed by Brendan Eich(in 1995) - for Netscape navigator browser.
-    -> Brendan Eich: created JS programming language - cofounded Mozilla - later Brave software(browser).
+    -> Brendan Eich: created JS programming language - co-founded Mozilla - later Brave software(browser).
 
     Refer Image: JS Concepts\assets\images\eventLoopsDesign.PNG
 
@@ -43,17 +44,17 @@
             placed in callback queue and are handled by the event loop once stack is cleared.
 
     Web APIs: Web APIs provide a way to interact with browser and allows to perform complex
-            operations that are not part of core Java script language.
-        -> setTimeOut()
-        -> fetch()
-        -> console
-        -> DOM APIs
-        -> localStorage
-        -> location
-           etc...
+              operations that are not part of core Java script language.
+            -> setTimeOut()
+            -> fetch()
+            -> console
+            -> DOM APIs
+            -> localStorage
+            -> location
+            etc...
 
-        -> Browser exposes all Web APIS in global object(window). JS running in browser can
-            access all web APIs directly through window object.
+            -> Browser exposes all Web APIS in global object(window). JS running in browser can
+                access all web APIs directly through window object.
     
     Callback queue(Task queue aka Message queue): All the callback functions from async operations 
             like setTimeout, event listeners are moved to the callback queue.
@@ -76,10 +77,10 @@
             occur like adding or removing nodes, changing attributes, or modifying text content etc.
             -> It is an async operation and should be handled by developer manually.
 
-    I/O Operations: I/O Operations are task that involves communication to external resources like
-            network requests, timers, read/write files, user inputs lile keyboard and mosue events etc.
+    I/O Operations: I/O Operations are tasks that involves communication to external resources like
+            network requests, timers, read/write files, user inputs like keyboard and mosue events etc.
             These are async in nature and doesn't block execution of code in main therad and instead
-            uses callbacks, promises etc to handle th result when I/O operation completes.
+            uses callbacks, promises etc. to handle th result when I/O operation completes.
         
 */
 
@@ -109,13 +110,13 @@
             -> Machine code(platform specific and low-level code) is directly executed by CPU.
 
         Garbage collection: GC automatically manages memory and frees up the memory that is 
-                no longer needed(For ex, if any objects are no longer refrenced).
+                no longer needed(For ex, if any objects are no longer referenced).
 
-                -> (In V8 engine) : It uses technique like "Mark-and-sweep"& "Generational garbage collection"
+                -> (In V8 engine) : It uses techniques like "Mark-and-sweep" & "Generational garbage collection"
                     algorithms to reclaim memory.
 
     Steps Overview for JS Engine:
-    ----------------------------
+    -----------------------------
                     JavaScript Source Code
                     ⬇️
                     Parser (Lexer + AST Generation)

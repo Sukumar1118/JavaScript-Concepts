@@ -1,12 +1,12 @@
 /* 
-    Exception: Exception is an any abnormal situation or unexpected contion during the 
+    Exception: Exception is an any abnormal situation or unexpected condition during the 
         execution of the program.
 
     Error: Error is an object with a specific type of problem in JS and it's a common form of exception.
         Errors are thown by JS engine or manually by the developer to indicate something went wrong in the program.
 
     -> Exceptions can throw(or includes) not only errors but also strings, numbers, custom values etc 
-        for nay any other anomalies(unexpected behaviours).
+        for any other anomalies(unexpected behaviours).
 
     -> Exceptions and Errors are thrown to signal any problem in the code using throw statement.
 
@@ -107,7 +107,7 @@ try {
 } catch (e) {
   console.log(e.message);
 } finally {
-  console.log("This will run always run");
+  console.log("This will run always");
 }
 
 //Ex: For try..catch and execution of code at particular points.

@@ -40,6 +40,7 @@ console.log(this); //window object
 
 /* In NodeJs: */
 console.log(this); //{} (Same as module.exports)
+console.log(globalThis); //global object
 
 ("use strict");
 console.log(this); //{} (Same as module.exports)
@@ -108,7 +109,7 @@ function setValue() {
   this.x = 100; // 'this' becomes 'window' (in browsers)
 }
 setValue();
-console.log(window.x); // Output: 100  (in browsers)
+//console.log(window.x); // Output: 100  (in browsers)
 
 /*
   In Strict mode: this - value depends on how the function is called(window).
@@ -233,7 +234,7 @@ Person1("Alice");
 /* In strict mode, this is undefined, preventing accidental global modifications. */
 function Person2(name) {
   "use strict";
-  this.name = name;
+  //this.name = name;
   console.log(this); // `this` is undefined
 }
 Person2("Alice");
@@ -259,7 +260,7 @@ class Person4 {
     this.name = name;
   }
 }
-Person4("Alice");
+//Person4("Alice");
 // Output: TypeError: Class constructor Person4 cannot be invoked without 'new'
 
 /* Inside a class method, this still refers to the instance. */
@@ -273,7 +274,7 @@ class Person5 {
   }
 }
 const p5 = new Person5("Alice");
-p1.greet();
+//p1.greet();
 // Output: Hello, my name is Alice
 
 /* this with Arrow Functions Inside a Class. 
@@ -289,7 +290,7 @@ class Person6 {
   };
 }
 const p6 = new Person("Alice");
-p1.greet();
+//p1.greet();
 // Output: Hello, my name is Alice
 
 /* this with Event Listeners Inside a Class. 
@@ -310,7 +311,7 @@ class Button {
   }
 }
 
-/* Fix: Use an Arrow Function*/
+/* Fix: Use an Arrow Function
 class Button {
   constructor(label) {
     this.label = label;
@@ -323,7 +324,7 @@ class Button {
     console.log(this.label); // ✅ Correct `this`
   }
 }
-
+*/
 /*
     Case	                  Constructor Function (function)                 Class (class)
     this in constructor	    Refers to the new object (if called with new)	  Refers to the new object.

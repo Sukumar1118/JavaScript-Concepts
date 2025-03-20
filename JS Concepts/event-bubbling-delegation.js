@@ -8,7 +8,7 @@
             and propagates upwards through the ancestor elements unntil it reaches the root element.
 
     Event capturing:
-        -> In this, event starts from oot element and propagates downwards to the
+        -> In this, event starts from root element and propagates downwards to the
             target element.
 
     Event propagation flow: Capture Phase -- Target phase -- Bubbling phase
@@ -157,7 +157,7 @@ document.getElementById("myButton").addEventListener("click", function () {
 
     Limitations:
         -> Some events like mouseenter, mouseleave, focus, blur may not bubble by default,
-            the  you can'e delegate them.
+            you can't delegate them.
         -> And stopPropagation method is used by chance in any child elements, it will not
             bubble up and event delegation will not happen.
 */

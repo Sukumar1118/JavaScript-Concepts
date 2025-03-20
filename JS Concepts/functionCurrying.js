@@ -71,12 +71,12 @@ console.log("composedFuncArrow: ", composedFuncArrow(3));
 //Using reduce & reduceRight functions to compose multiple functions.
 const substract = (x) => x - 1;
 
-const composeromRight =
+const composeFromRight =
   (...functions) =>
   (input) =>
     functions.reduceRight((acc, fun) => fun(acc), input);
 
-const composeReduceRight = composeromRight(add, multiply, substract);
+const composeReduceRight = composeFromRight(add, multiply, substract);
 console.log(`composeReduceRight: ${composeReduceRight(2)}`);
 
 const composeFromLeft =
@@ -96,6 +96,6 @@ function multiplication(x) {
 }
 
 function composedFunc(x) {
-  return multiplication(sum(2));
+  return multiplication(sum(x));
 }
 console.log("composedFunc: ", composedFunc(2));

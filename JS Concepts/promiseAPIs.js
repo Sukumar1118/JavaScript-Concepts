@@ -5,7 +5,7 @@
 
     Promise.all(): Once all promise are fulfilled, it gives all the promise results as an array.
         -> If any one of the promise is rejected, it will give an error immediately at that 
-            point of timewith out waiting for other promises to be fulfilled.
+            point of time with out waiting for other promises to be fulfilled.
 
     Sample1: [ 'allP1 success.', 'allP2 success.', 'allP3 success.' ].
     
@@ -47,8 +47,8 @@ allPromises
 */
 
 const allSettledP1 = new Promise((resolve, reject) => {
-  setTimeout(() => resolve("allSettledP1 success."), 3000);
-  //setTimeout(() => reject("allSettledP1 failure."), 3000);
+  //setTimeout(() => resolve("allSettledP1 success."), 3000);
+  setTimeout(() => reject("allSettledP1 failure."), 3000);
 });
 
 const allSettledP2 = new Promise((resolve, reject) => {

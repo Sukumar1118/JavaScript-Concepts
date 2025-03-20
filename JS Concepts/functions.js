@@ -23,18 +23,17 @@
             as a value and cannot be called before the line where the function is defined.
 
     Anonymous function: A function that doesn't have a name.
-        -> These ar created by function expressions or arrow functions.
+        -> These are created by function expressions or arrow functions.
         -> These are passed as arguments to another functions.
         -> These are mostly used:
             -> As callbacks to pass arguments to another functions like seTimeout(), 
-            -> For handling events like clicks etc.
-            -> In IIFEs as functions.
-                etc...
+               for handling events like clicks etc.
+            -> In IIFEs as functions etc.
 
     Named function expression: A function expression that has a name even though it is assigned to a variable.
-        -> In this, named function is only invoked from inside the function and the named function
+        -> In this, named function is invoked only from inside the function and the named function
             cannot be called outside the function.
-        -> It can be used for recursion where thr function needs refrence to itself.
+        -> It can be used for recursion where the function needs refrence to itself.
         -> It is used for better debugging, since named functions gives more meaningful information
             than anonymous functions in debugging tools or stack traces.
 
@@ -52,7 +51,7 @@
             and it is executed after specific point of time or an event has occurred.
         -> Callbacks are essential for handling tasks like fetching data from server,
             timers etc. without blocking the execution of other code and they provide 
-            a way to hadle sync operations.
+            a way to handle async operations.
         -> Callbacks are heavily used to handle events.
         For Ex: When you clcik a button, you define a calback function to handle 
         that event.
@@ -76,7 +75,7 @@
         -> Impure function is that which produces different output even with same inputs or
             may cause side effects by modifying external state or data.
 
-        -> It's better to write pure functions most of the times becaise they are more predictable,
+        -> It's better to write pure functions most of the times because they are more predictable,
             testable and maintainable.
 
     Constructor function:
@@ -108,7 +107,7 @@ let func4 = function greet() {
   console.log(greet);
 };
 func4();
-greet(); // ReferenceError: greet is not defined.
+//greet(); // ReferenceError: greet is not defined.
 
 //callback functions
 console.log("Start 1");
@@ -117,9 +116,9 @@ setTimeout(function () {
 }, 2000);
 console.log("End 1");
 
-document.getElementById("myButton").addEventListener("click", function () {
-  console.log("Button clicked!");
-});
+// document.getElementById("myButton").addEventListener("click", function () {
+//   console.log("Button clicked!");
+// });
 
 //Arrow function
 const funcName = (param1, param2) => {
@@ -133,7 +132,7 @@ const personDetails = {
     console.log(`Name: ${this.firstName}`);
   },
 };
-console.log(personDetails.greet());// Name: undefined (here it inherits global scope)
+console.log(personDetails.greet()); // Name: undefined (here it inherits global scope)
 
 //Higher-order function(Calculate function takes another function as argument)
 const radius = [2, 7, 10, 15];
@@ -200,3 +199,24 @@ function Person(name, age) {
 
 let person1 = new Person("Sukumar", 34);
 person1.sayHello(); //Output: Name: Sukumar, Age: 34
+
+/*
+
+  Key Differences:
+  ----------------
+  
+  Feature	                     | First-Class Functions	      Higher-Order Functions
+  -------                        ---------------------        ----------------------
+  Definition	                 | Functions treated as values	Functions that take/return other functions
+  Can be assigned to a variable| ✅	                        ✅
+  Can be passed as arguments	 | ✅	                        ✅
+  Can return another function	 | ❌ (Not necessarily)	      ✅
+  Example	                     | const fn = () => {}	        arr.map(fn) or function returning function
+  
+  Summary:
+  --------
+  -> First-class functions mean functions are treated like any other value.
+  -> Higher-order functions operate on functions by taking them as arguments or returning them.
+  -> JavaScript supports both concepts, making it highly functional and expressive.
+
+*/
