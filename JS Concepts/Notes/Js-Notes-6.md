@@ -1,119 +1,550 @@
-Web Worker:
-What is web worker?
-	A web worker allows you to run scripts in a separate background thread.
-	With this we can execute the heavy computations or long running tasks without blocking the main thread.
-How it works?
-	Web workers run in a separate thread from the main JavaScript execution thread.
-	They don’t have direct access to DOM.
-	Communication between Main thread & worker happens via message passing using postMessage () & onmessage event listeners.
-In Depth details:
-	Create Worker file in public folder – because Web Workers needs to be loaded via URL.
-	To use Web Worker: In any react component or any other JS framework.
-1.	Create web worker.
-const newWorker = new Worker(“./worker.js”);
-2.	Listen for messages.
-newWorker.onmessage = (event) => {};
-3.	Send or post messages.
-newWorker.postMessage(“message”);
-4.	Cleanup or terminate web workers.
-newWorker.terminate()
-	Benefits: 
-1.	Avoids UI freezing – by running heavy calculations in the background
-2.	Non-blocking execution – main thread remains free for user interactions.
-3.	Improves performance – of the application.
-	Why Web Worker needs to be placed in public folder?
-1.	Public folder is the place where assets are stored that should be publicly accessible.
-2.	Web Workers needs to be loaded using URL (that means not via an import statement). 
-3.	Placing in public folder ensures that the React or any build process doesn’t interfere with the worker.
-4.	React’s or other build system processes files inside “src” folder, but web workers need to be referenced via URL.
-5.	Files in public are not bundled or transformed by the Webpack or any other bundlers.
-6.	Placing in public ensures it remains accessible at a fixed URL.
-7.	When we create a Web Worker using new Worker (URL), the argument must be URL pointing to a separate file.
-8.	You cannot pass inline functions or import modules like normal JavaScript.
-9.	Webpack or any other bundler bundles all the “src” files together in to main.js file & worker.js cannot be accessed.
-10.	If new Worker(“./worker.js”) - tries to find an actual file, it will not find as it is bundled together.
-11.	If you still want to put it in “src” folder, you can use Blob URL or worker loader. They make sure it will not be bundled together with main.js and ensures to create as a separate file and so it can be accessible as an individual file.
-	How Web Worker file is secure, if it is kept as a separate file?
-1.	By default, worker.js in public folder is not minified & is readable.
-2.	If you want to minify it, use webpack with worker-loader or manually with terser.
-3.	Using webpack, it ensures minification & separate worker execution.
-4.	Web Worker is served from the Same Origin (same domain & protocol) & so it follows the same origin policy (SOP) meaning:
-1.	Only your frontend app can access or interact with the worker.
-2.	External sites cannot directly access unless you allow explicitly CORS.
-	How Web Workers works BTS?
-1.	JavaScript is single threaded, but Web Workers run in a separate thread provided by the browser.
-2.	Separate thread means:
-i.	Separate execution context – Heap (own memory), Call Stack & Event Loop.
-ii.	Message system to communicate with main thread.
-3.	Web Workers are Browser APIs, not part of JavaScript.
-4.	They communicate asynchronously using message system, but they don’t use async/await.
-5.	They do not block the UI, making them useful for CPU intensive tasks.
-	Steps for execution flow of Web Workers:
-1.	Main thread send message to start worker & the main thread continues.
-2.	Worker receives message & start a separate thread for execution.
-3.	Worker has its own execution context & event loop to execute Worker JS code in separate thread.
-4.	Once execution is done, worker sends message to Message queue & the event loop in the main thread handles the message to execute in main thread.
-5.	Message queue(workers) is part of Macro Task queue or task queue which handles timers, DOM APIs etc.
-6.	Communication between Worker & main thread is massage system.
-7.	Event loop in main thread handles workers message just like timers, DOM APIs etc. & put it to main thread call stack when it is free.
-	How multiple Web Workers execute?
-1.	If there are multiple Web Workers, each one runs in separate thread.
-2.	Multiple workers mean multiple parallel threads runs independently.
-3.	Each worker/thread has its own Execution context & cannot share memory.
-4.	They communicate to main thread via postMessage ()– a messaging system and this is handled by browser’s internal message delivery system.
-5.	More workers mean better performance for CPU intensive tasks, but too many can overload.
-	What is Shared Worker?
-1.	Shared Worker can be accessed by multiple scripts running in different windows, iframes, or different tabs as long as they are form the same origin.
-2.	Dedicated Workers are tied to single script where as Shared Workers enable inter-tab communication.
-3.	Examples of Real time use cases like Chat applications, live updates like stock market updates, cricket updates etc. 
-4.	This kind of applications can use Shared Worker for each opened tab to get the data from Shared Worker & display the data instead of opening new connection or new dedicated Worker for each script.
-	What is Service Worker?
-1.	Service Worker is a background script that acts as proxy between the browser and the network.
-2.	It enables features like offline support, caching, background sync and push notifications.
-3.	Example for Chat apps: 
-i.	If online messages are sent to the server immediately.
-ii.	If offline, messages are stored in Indexed DB & when the user comes online, the service worker sends the stored messages.
-iii.	The service worker registers sync event when message is saved offline and send messages o the server automatically when the network is available.
-	Push Notifications:
-1.	Push notification is the message sent from the server to a user’s device even if the user is not actively using the app or website.
-2.	It appears as a Pop-up or alert on mobile devices, desktops even if the application is closed or running in the background.
-	How the Push Notifications work?
-1.	First user grants permission to allow push notifications.
-2.	App registers/subscribes for push notifications service.	
-3.	Server send the push notifications using Push API.
-4.	Service worker receives push notifications even if the app is closed.
-5.	The service worker wakes up and displays the message.
-6.	The browser wakes up the Service Worker to handle push notifications.
-7.	The Service Worker doesn’t run continuously, it only activates when a push event is received.
-	Message System:
-1.	All types of Web Workers communicate via message system with main thread.
-2.	They cannot communicate with each other & they rely on main thread to communicate.
-3.	Workers cannot directly access to DOM or share memory.
-	Use cases of Web Workers:
-1.	Data heavy computations like calculations etc.
-2.	Handling large JSON files like parsing large datasets.
-3.	Text analysis like spell checking etc.
-4.	Image processing in an editor etc.
-	Handle large datasets Efficiently in an application:
-1.	Server-Side Pagination:
-i.	Best for Large APIs because instead of fetching the entire dataset at once, handling the pagination on server.
-ii.	We can fetch only required number records per page.
-2.	Client-side pagination with Virtualization (In React):
-i.	If data must be fetched entirely & handle it in UI, use react Virtualized.
-ii.	Virtualization can be done using react-window library.
-3.	Indexed DB for Persistent caching:
-i.	Store API response in Indexed DB – a browser based database.
-ii.	Retrieve only required records from the DB instead of fetching data from the network every time.
-4.	Web Workers: 
-i.	Runs in background in a separate thread without blocking the UI.
-ii.	Good for CPU intensive tasks.
-	Summary of approaches:
-1.	Web Workers: Good for heavy computations & background API calls.
-2.	Client-side pagination + Virtualization: Good for handling large datasets efficiently.
-3.	Indexed DB: Good for caching large API responses without blocking UI.
-4.	Best Approach (In React): Combine useState() + indexed Db 	to optimize performance.
-ES6 features:
-Map & Set Data Structures:
-	
-JavaScript Questions & Answers:
+I'll provide a comprehensive overview of String methods in JavaScript, covering both static methods (called on the String constructor) and instance methods (called on string objects). I'll include practical examples for each.
+
+### Static String Methods
+These are methods called directly on the `String` constructor.
+
+1. **String.fromCharCode(...codes)**
+   - Creates a string from Unicode values (character codes)
+   ```javascript
+   const str = String.fromCharCode(72, 101, 108, 108, 111);
+   console.log(str); // "Hello"
+   ```
+
+2. **String.fromCodePoint(...codes)**
+   - Creates a string from Unicode code points (handles extended characters better)
+   ```javascript
+   const emoji = String.fromCodePoint(128512); // 😀
+   console.log(emoji); // "😀"
+   ```
+
+3. **String.raw()**
+   - Creates a raw string from template literals, preserving escape sequences
+   ```javascript
+   const path = String.raw`C:\new\test`;
+   console.log(path); // "C:\new\test" (no interpretation of \n)
+   ```
+
+### Instance String Methods
+These are methods available on string instances/objects.
+
+#### Searching & Matching
+1. **charAt(index)**
+   - Returns character at specified index
+   ```javascript
+   const str = "Hello";
+   console.log(str.charAt(1)); // "e"
+   ```
+
+2. **charCodeAt(index)**
+   - Returns Unicode value of character at index
+   ```javascript
+   const str = "Hello";
+   console.log(str.charCodeAt(0)); // 72 (Unicode for "H")
+   ```
+
+3. **codePointAt(index)**
+   - Returns Unicode code point at index (handles surrogate pairs)
+   ```javascript
+   const str = "😀";
+   console.log(str.codePointAt(0)); // 128512
+   ```
+
+4. **includes(searchString, position)**
+   - Checks if string contains substring
+   ```javascript
+   const str = "Hello World";
+   console.log(str.includes("World")); // true
+   console.log(str.includes("world", 6)); // false
+   ```
+
+5. **indexOf(searchString, position)**
+   - Returns first index of substring (-1 if not found)
+   ```javascript
+   const str = "Hello Hello";
+   console.log(str.indexOf("Hello")); // 0
+   console.log(str.indexOf("Hello", 2)); // 6
+   ```
+
+6. **lastIndexOf(searchString, position)**
+   - Returns last index of substring
+   ```javascript
+   const str = "Hello Hello";
+   console.log(str.lastIndexOf("Hello")); // 6
+   ```
+
+7. **search(regexp)**
+   - Returns index of first match with regular expression
+   ```javascript
+   const str = "Hello123World";
+   console.log(str.search(/[0-9]/)); // 5
+   ```
+
+8. **match(regexp)**
+   - Returns array of matches or null
+   ```javascript
+   const str = "The numbers are 123 and 456";
+   console.log(str.match(/\d+/g)); // ["123", "456"]
+   ```
+
+9. **matchAll(regexp)**
+   - Returns iterator of all matches with capture groups
+   ```javascript
+   const str = "test1 test2";
+   const matches = [...str.matchAll(/test(\d)/g)];
+   console.log(matches); // [[test1, 1], [test2, 2]]
+   ```
+
+#### Manipulation
+10. **concat(...strings)**
+    - Combines strings
+    ```javascript
+    const str = "Hello";
+    console.log(str.concat(" ", "World")); // "Hello World"
+    ```
+
+11. **repeat(count)**
+    - Repeats string n times
+    ```javascript
+    const str = "Hi ";
+    console.log(str.repeat(3)); // "Hi Hi Hi "
+    ```
+
+12. **replace(searchValue, replaceValue)**
+    - Replaces first match
+    ```javascript
+    const str = "Hello World";
+    console.log(str.replace("World", "Everyone")); // "Hello Everyone"
+    ```
+
+13. **replaceAll(searchValue, replaceValue)**
+    - Replaces all matches
+    ```javascript
+    const str = "cat cat dog";
+    console.log(str.replaceAll("cat", "bird")); // "bird bird dog"
+    ```
+
+14. **slice(start, end)**
+    - Extracts portion of string
+    ```javascript
+    const str = "Hello World";
+    console.log(str.slice(6)); // "World"
+    console.log(str.slice(0, 5)); // "Hello"
+    ```
+
+15. **substring(start, end)**
+    - Extracts characters between two indices
+    ```javascript
+    const str = "Hello World";
+    console.log(str.substring(6, 11)); // "World"
+    ```
+
+16. **substr(start, length)**
+    - Extracts characters from start with length
+    ```javascript
+    const str = "Hello World";
+    console.log(str.substr(6, 5)); // "World"
+    ```
+
+#### Case Conversion
+17. **toLowerCase()**
+    - Converts to lowercase
+    ```javascript
+    const str = "HELLO World";
+    console.log(str.toLowerCase()); // "hello world"
+    ```
+
+18. **toUpperCase()**
+    - Converts to uppercase
+    ```javascript
+    const str = "Hello World";
+    console.log(str.toUpperCase()); // "HELLO WORLD"
+    ```
+
+#### Trimming
+19. **trim()**
+    - Removes whitespace from both ends
+    ```javascript
+    const str = "   Hello World   ";
+    console.log(str.trim()); // "Hello World"
+    ```
+
+20. **trimStart()**
+    - Removes whitespace from start
+    ```javascript
+    const str = "   Hello World";
+    console.log(str.trimStart()); // "Hello World"
+    ```
+
+21. **trimEnd()**
+    - Removes whitespace from end
+    ```javascript
+    const str = "Hello World   ";
+    console.log(str.trimEnd()); // "Hello World"
+    ```
+
+#### Padding
+22. **padStart(targetLength, padString)**
+    - Pads start of string
+    ```javascript
+    const str = "5";
+    console.log(str.padStart(3, "0")); // "005"
+    ```
+
+23. **padEnd(targetLength, padString)**
+    - Pads end of string
+    ```javascript
+    const str = "5";
+    console.log(str.padEnd(3, "0")); // "500"
+    ```
+
+#### Splitting
+24. **split(separator, limit)**
+    - Splits string into array
+    ```javascript
+    const str = "apple,banana,orange";
+    console.log(str.split(",")); // ["apple", "banana", "orange"]
+    console.log(str.split(",", 2)); // ["apple", "banana"]
+    ```
+
+#### Miscellaneous
+25. **startsWith(searchString, position)**
+    - Checks if string starts with substring
+    ```javascript
+    const str = "Hello World";
+    console.log(str.startsWith("Hello")); // true
+    ```
+
+26. **endsWith(searchString, length)**
+    - Checks if string ends with substring
+    ```javascript
+    const str = "Hello World";
+    console.log(str.endsWith("World")); // true
+    ```
+
+27. **toString()**
+    - Returns string representation
+    ```javascript
+    const str = new String("Hello");
+    console.log(str.toString()); // "Hello"
+    ```
+
+28. **valueOf()**
+    - Returns primitive value
+    ```javascript
+    const str = new String("Hello");
+    console.log(str.valueOf()); // "Hello"
+    ```
+
+### Key Points
+- Most methods don't modify the original string (strings are immutable in JS)
+- Many methods accept regular expressions as parameters
+- Some methods (like `substring` vs `slice`) have subtle differences in handling negative indices
+- Modern methods like `includes`, `startsWith`, and `endsWith` are more readable alternatives to `indexOf`
+
+These methods cover the majority of string manipulation needs in JavaScript.
+
+=====================================================================================
+
+Below is a summarized version of the conversation about JavaScript String methods, organized as concise notes for future reference. It includes all points and examples from the previous response, without duplication, structured clearly with static and instance methods, explanations, and code snippets.
+
+---
+
+# JavaScript String Methods - Comprehensive Notes
+
+## Overview
+- **Static Methods**: Called on the `String` constructor (e.g., `String.fromCharCode()`).
+- **Instance Methods**: Called on string instances (e.g., `"hello".toLowerCase()`).
+- Strings in JavaScript are immutable; methods return new strings, not modify originals.
+- Many methods support regular expressions (regex).
+- Current date (for context): March 26, 2025.
+
+---
+
+## Static String Methods
+
+1. **`String.fromCharCode(...codes)`**
+   - Creates a string from Unicode character codes.
+   - Example:
+     ```javascript
+     const str = String.fromCharCode(72, 101, 108, 108, 111);
+     console.log(str); // "Hello"
+     ```
+
+2. **`String.fromCodePoint(...codes)`**
+   - Creates a string from Unicode code points (better for extended characters like emojis).
+   - Example:
+     ```javascript
+     const emoji = String.fromCodePoint(128512);
+     console.log(emoji); // "😀"
+     ```
+
+3. **`String.raw()`**
+   - Creates a raw string from template literals, preserving escape sequences (e.g., `\n` stays literal).
+   - Example:
+     ```javascript
+     const path = String.raw`C:\new\test`;
+     console.log(path); // "C:\new\test"
+     ```
+
+---
+
+## Instance String Methods
+
+### Searching & Matching
+
+1. **`charAt(index)`**
+   - Returns character at specified index (0-based).
+   - Example:
+     ```javascript
+     const str = "Hello";
+     console.log(str.charAt(1)); // "e"
+     ```
+
+2. **`charCodeAt(index)`**
+   - Returns Unicode value of character at index.
+   - Example:
+     ```javascript
+     const str = "Hello";
+     console.log(str.charCodeAt(0)); // 72 (Unicode for "H")
+     ```
+
+3. **`codePointAt(index)`**
+   - Returns Unicode code point at index (handles surrogate pairs for extended characters).
+   - Example:
+     ```javascript
+     const str = "😀";
+     console.log(str.codePointAt(0)); // 128512
+     ```
+
+4. **`includes(searchString, position)`**
+   - Checks if string contains substring, optionally starting from `position`.
+   - Returns `true`/`false`.
+   - Example:
+     ```javascript
+     const str = "Hello World";
+     console.log(str.includes("World")); // true
+     console.log(str.includes("world", 6)); // false
+     ```
+
+5. **`indexOf(searchString, position)`**
+   - Returns first index of substring, or `-1` if not found, optionally starting from `position`.
+   - Example:
+     ```javascript
+     const str = "Hello Hello";
+     console.log(str.indexOf("Hello")); // 0
+     console.log(str.indexOf("Hello", 2)); // 6
+     ```
+
+6. **`lastIndexOf(searchString, position)`**
+   - Returns last index of substring, or `-1` if not found, optionally up to `position`.
+   - Example:
+     ```javascript
+     const str = "Hello Hello";
+     console.log(str.lastIndexOf("Hello")); // 6
+     ```
+
+7. **`search(regexp)`**
+   - Returns index of first match with regex, or `-1` if not found.
+   - Example:
+     ```javascript
+     const str = "Hello123World";
+     console.log(str.search(/[0-9]/)); // 5
+     ```
+
+8. **`match(regexp)`**
+   - Returns array of matches or `null` if no match; use `/g` flag for all matches.
+   - Example:
+     ```javascript
+     const str = "The numbers are 123 and 456";
+     console.log(str.match(/\d+/g)); // ["123", "456"]
+     ```
+
+9. **`matchAll(regexp)`**
+   - Returns iterator of all matches with capture groups (requires `/g` flag).
+   - Example:
+     ```javascript
+     const str = "test1 test2";
+     const matches = [...str.matchAll(/test(\d)/g)];
+     console.log(matches); // [[test1, 1], [test2, 2]]
+     ```
+
+### Manipulation
+
+10. **`concat(...strings)`**
+    - Combines multiple strings into one.
+    - Example:
+      ```javascript
+      const str = "Hello";
+      console.log(str.concat(" ", "World")); // "Hello World"
+      ```
+
+11. **`repeat(count)`**
+    - Repeats string `count` times.
+    - Example:
+      ```javascript
+      const str = "Hi ";
+      console.log(str.repeat(3)); // "Hi Hi Hi "
+      ```
+
+12. **`replace(searchValue, replaceValue)`**
+    - Replaces first occurrence of `searchValue` (string or regex) with `replaceValue`.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.replace("World", "Everyone")); // "Hello Everyone"
+      ```
+
+13. **`replaceAll(searchValue, replaceValue)`**
+    - Replaces all occurrences of `searchValue` (string or regex with `/g`) with `replaceValue`.
+    - Example:
+      ```javascript
+      const str = "cat cat dog";
+      console.log(str.replaceAll("cat", "bird")); // "bird bird dog"
+      ```
+
+14. **`slice(start, end)`**
+    - Extracts portion from `start` to `end` (exclusive); supports negative indices.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.slice(6)); // "World"
+      console.log(str.slice(0, 5)); // "Hello"
+      ```
+
+15. **`substring(start, end)`**
+    - Extracts characters between `start` and `end` (exclusive); negative indices treated as 0.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.substring(6, 11)); // "World"
+      ```
+
+16. **`substr(start, length)`**
+    - Extracts `length` characters from `start`; negative `start` counts from end.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.substr(6, 5)); // "World"
+      ```
+
+### Case Conversion
+
+17. **`toLowerCase()`**
+    - Converts string to lowercase.
+    - Example:
+      ```javascript
+      const str = "HELLO World";
+      console.log(str.toLowerCase()); // "hello world"
+      ```
+
+18. **`toUpperCase()`**
+    - Converts string to uppercase.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.toUpperCase()); // "HELLO WORLD"
+      ```
+
+### Trimming
+
+19. **`trim()`**
+    - Removes whitespace from both ends.
+    - Example:
+      ```javascript
+      const str = "   Hello World   ";
+      console.log(str.trim()); // "Hello World"
+      ```
+
+20. **`trimStart()`**
+    - Removes whitespace from start.
+    - Example:
+      ```javascript
+      const str = "   Hello World";
+      console.log(str.trimStart()); // "Hello World"
+      ```
+
+21. **`trimEnd()`**
+    - Removes whitespace from end.
+    - Example:
+      ```javascript
+      const str = "Hello World   ";
+      console.log(str.trimEnd()); // "Hello World"
+      ```
+
+### Padding
+
+22. **`padStart(targetLength, padString)`**
+    - Pads start of string with `padString` until `targetLength` is reached.
+    - Example:
+      ```javascript
+      const str = "5";
+      console.log(str.padStart(3, "0")); // "005"
+      ```
+
+23. **`padEnd(targetLength, padString)`**
+    - Pads end of string with `padString` until `targetLength` is reached.
+    - Example:
+      ```javascript
+      const str = "5";
+      console.log(str.padEnd(3, "0")); // "500"
+      ```
+
+### Splitting
+
+24. **`split(separator, limit)`**
+    - Splits string into array using `separator`, optionally limited to `limit` elements.
+    - Example:
+      ```javascript
+      const str = "apple,banana,orange";
+      console.log(str.split(",")); // ["apple", "banana", "orange"]
+      console.log(str.split(",", 2)); // ["apple", "banana"]
+      ```
+
+### Miscellaneous
+
+25. **`startsWith(searchString, position)`**
+    - Checks if string starts with `searchString`, optionally from `position`.
+    - Returns `true`/`false`.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.startsWith("Hello")); // true
+      ```
+
+26. **`endsWith(searchString, length)`**
+    - Checks if string ends with `searchString`, optionally considering only first `length` characters.
+    - Returns `true`/`false`.
+    - Example:
+      ```javascript
+      const str = "Hello World";
+      console.log(str.endsWith("World")); // true
+      ```
+
+27. **`toString()`**
+    - Returns string representation of String object.
+    - Example:
+      ```javascript
+      const str = new String("Hello");
+      console.log(str.toString()); // "Hello"
+      ```
+
+28. **`valueOf()`**
+    - Returns primitive value of String object.
+    - Example:
+      ```javascript
+      const str = new String("Hello");
+      console.log(str.valueOf()); // "Hello"
+      ```
+
+---
+
+## Key Notes
+- **Immutability**: String methods return new strings; original remains unchanged.
+- **Regular Expressions**: Supported by `search`, `match`, `matchAll`, `replace`, `replaceAll`.
+- **Differences**:
+  - `slice` vs `substring`: `slice` supports negative indices; `substring` treats them as 0.
+  - `substring` vs `substr`: `substring` uses end index, `substr` uses length.
+- **Modern Alternatives**: `includes`, `startsWith`, `endsWith` are more readable than `indexOf` for boolean checks.
+
+=========================================================================================
 

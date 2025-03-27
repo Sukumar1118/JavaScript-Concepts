@@ -1,5 +1,5 @@
 /*
-  -> In JavaScript, this is a special keyword that refers to the context in which a function is executed. 
+  -> "this" is a special keyword that refers to the context in which a function is executed. 
      It's value depends on how and where the function is called.
 */
 
@@ -14,6 +14,7 @@
                 ->  'this' - value is undefined when the script type/runs as module.
                     Ex: <script type="module">
                           console.log(this);  //undefined
+                          console.log(globalThis); //Window object
                         </script>
                         Output: undefined
 
