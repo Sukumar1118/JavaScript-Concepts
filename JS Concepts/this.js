@@ -1,5 +1,5 @@
 /*
-  -> "this" is a special keyword that refers to the context in which a function is executed. 
+  -> "this" refers to the context in which a function is executed.
      It's value depends on how and where the function is called.
 */
 
