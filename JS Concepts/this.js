@@ -60,7 +60,7 @@ thisIndiseFunction();
 
 /* 'use strict':
   -> 'use strict' mode should be on top of the file or it should be inside the function,
-      otherwise it will not as expected.
+      otherwise it will not work as expected.
   -> 'use strict' mode code directly in browser's console doesn't work as expected.
   -> To check 'use strict', create html file, implement Code,Run and verify in browser console.
 */
@@ -157,7 +157,7 @@ student1.func.call(student2); //'this' - value is 'Virat'(student2.name) here.
         -> Arrow functions doesn't have their own 'this' binding, it retains the 'this' - value
             of its enclosing lexical context(inherits the this from the parent scope when defined).
 
-        -> In nested arrow function it refres to the context of parent function.
+        -> In nested arrow function it refers to the context of parent function.
 */
 
 const employee = {
@@ -278,7 +278,8 @@ const p5 = new Person5("Alice");
 //p1.greet();
 // Output: Hello, my name is Alice
 
-/* this with Arrow Functions Inside a Class. 
+/* 
+  this with Arrow Functions Inside a Class. 
       -> Arrow functions inherit this from the surrounding class instance.
 */
 class Person6 {
