@@ -48,7 +48,9 @@ getName1(); //Reddy
 
 /*
 
-**Hoisting** in JavaScript is the behavior where **declarations** are processed before the code is executed. It often appears as if variables and functions are "moved to the top" of their scope, but that's just a conceptual model—the code isn't actually rearranged.
+**Hoisting** in JavaScript is the behavior where **declarations** are processed before the code is executed. 
+It often appears as if variables and functions are "moved to the top" of their scope,
+but that's just a conceptual model—the code isn't actually rearranged.
 
 ### 1. Hoisting with `var`
 

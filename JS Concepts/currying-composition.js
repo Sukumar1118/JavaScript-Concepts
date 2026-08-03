@@ -1,11 +1,16 @@
 /* Function Currying:
    =================
-    It's a tecnique to tranform a function in to a sequence of functions, each function taking an argument.
-    Instead of taking all arguments at once, a function takes single argument and returns a function that 
-    takes another argument and so on until all arguments are provided. Then final function returns the result.
+    It's a tecnique to tranform a function in to a sequence of functions, 
+    each function taking an argument.
+    
+    Instead of taking all arguments at once, a function takes single argument and
+    returns a function that takes another argument and so on until all arguments 
+    are provided. Then final function returns the result.
 
-    Note: -> Curried functions can take multiple arguments and combination also like single and multiple 
-            arguments in the chain, but it's like partial application rather than pure currying. 
+    Note: -> Curried functions can take multiple arguments and combination also 
+    like single and multiple arguments in the chain, but it's like partial 
+    application rather than pure currying.
+
     -> Curried functions take single argument at once.
 */
 //Example using closures.
@@ -51,8 +56,9 @@ error("This is an error");
 
 /* Funcition Composition:
    =====================
-   It's like combine two or more functions to produce another new function. The result of 
-   one function is passed as input to another function and so on until all funtiona are applied.
+   It's like combine two or more functions to produce another new function. 
+   The result of one function is passed as input to another function and 
+   so on until all funtions are applied.
 
    Notes:
     -> Composing function from right to left using reduceRight called 
